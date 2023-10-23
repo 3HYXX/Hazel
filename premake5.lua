@@ -19,15 +19,13 @@ project "Hazel"
 		"%{prj.name}/src/**.cpp"
 	}
 
-	include
+	includedirs
 	{
+		"Hazel/src",
 		"%{prj.name}/vendor/spdlog/include"
 	}
 
-	links
-	{
-		"Hazel"
-	}
+	
 
 	filter "system:windows"
 		cppdialect "C++17"
@@ -57,6 +55,8 @@ project "Hazel"
 		defines "HZ_DIST"
 		symbols "On"
 
+
+		
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
@@ -71,10 +71,15 @@ project "Sandbox"
 		"%{prj.name}/src/**.cpp"
 	}
 
-	include
+	includedirs
 	{
-		"%{prj.name}/vendor/spdlog/include",
+		"Hazel/vendor/spdlog/include",
 		"Hazel/src"
+	}
+
+	links
+	{
+		"Hazel"
 	}
 
 	filter "system:windows"
@@ -86,7 +91,6 @@ project "Sandbox"
 		{
 			"HZ_PLATFORM_WINDOWS"
 		}
-
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
