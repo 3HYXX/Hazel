@@ -5,6 +5,11 @@ workspace "Hazel"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
+
+include "Hazel/vendor/GLFW"
+
 project "Hazel"
 	location "Hazel"
 	kind "SharedLib"
@@ -23,11 +28,16 @@ project "Hazel"
 
 	includedirs
 	{
-		"Hazel/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
 	}
 
-	
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
+	}
 
 	filter "system:windows"
 		cppdialect "C++17"
@@ -49,6 +59,7 @@ project "Hazel"
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
+		defines "HZ_ENABLE_ASSERTS"
 		symbols "On"
 
 	filter "configurations:Release"
