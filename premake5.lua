@@ -13,6 +13,8 @@ project "Hazel"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "hzpch.h"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -31,6 +33,8 @@ project "Hazel"
 		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
+
+		pchsource "Hazel/src/hzpch.cpp"
 
 		defines
 		{
