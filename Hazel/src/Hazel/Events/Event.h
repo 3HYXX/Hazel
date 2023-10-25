@@ -14,7 +14,7 @@ namespace Hazel {
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
 		KeyPressed, KeyReleased,
-		MouseButtonPressed, MouseButtonReleased, MouseScrolled,
+		MouseMoved, MouseButtonPressed, MouseButtonReleased, MouseScrolled,
 	};
 
 	enum EventCategory
@@ -36,6 +36,7 @@ namespace Hazel {
 
 	class HAZEL_API Event
 	{
+		friend class EventDispatcher;
 	public:
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
