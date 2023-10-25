@@ -60,15 +60,18 @@ project "Hazel"
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
 		defines "HZ_ENABLE_ASSERTS"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
 		optimize "On"
+		buildoptions "/MD"
 
 	filter "configurations:Dist"
 		defines "HZ_DIST"
 		symbols "On"
+		buildoptions "/MD"
 
 
 		
@@ -110,11 +113,14 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
 		symbols "On"
+		buildoptions "/MDd"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
 		optimize "On"
+		buildoptions "/MD"
 
 	filter "configurations:Dist"
 		defines "HZ_DIST"
 		symbols "On"
+		buildoptions "/MD"
