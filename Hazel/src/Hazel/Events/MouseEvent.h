@@ -6,7 +6,7 @@
 
 namespace Hazel {
 
-	class HAZEL_API MouseMovedEvent : public Event
+	class MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y)
