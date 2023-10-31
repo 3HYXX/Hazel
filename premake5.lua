@@ -1,7 +1,7 @@
 workspace "Hazel"
 	architecture "x64"
 	configurations { "Debug", "Release", "Dist" }
-
+	startproject "SandBox"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -10,10 +10,11 @@ IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
 IncludeDir["Glad"] = "Hazel/vendor/Glad/include"
 IncludeDir["ImGui"] = "Hazel/vendor/ImGui"
 
-include "Hazel/vendor/GLFW"
-include "Hazel/vendor/Glad"
-include "Hazel/vendor/ImGui"
-
+group "Dependencies"
+	include "Hazel/vendor/GLFW"
+	include "Hazel/vendor/Glad"
+	include "Hazel/vendor/ImGui"
+group ""
 
 project "Hazel"
 	location "Hazel"
@@ -50,7 +51,7 @@ project "Hazel"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		pchsource "Hazel/src/hzpch.cpp"
@@ -64,24 +65,23 @@ project "Hazel"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath}  \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
-		defines "HZ_ENABLE_ASSERTS"
-		buildoptions "/MDd"
 		symbols "On"
+		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
 		optimize "On"
-		buildoptions "/MD"
+		runtime "Release"
 
 	filter "configurations:Dist"
 		defines "HZ_DIST"
 		symbols "On"
-		buildoptions "/MD"
+		runtime "Release"
 
 
 		
@@ -112,7 +112,7 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines
@@ -123,14 +123,14 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
 		symbols "On"
-		buildoptions "/MDd"
+		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
 		optimize "On"
-		buildoptions "/MD"
+		runtime "Release"
 
 	filter "configurations:Dist"
 		defines "HZ_DIST"
 		symbols "On"
-		buildoptions "/MD"
+		runtime "Release"
