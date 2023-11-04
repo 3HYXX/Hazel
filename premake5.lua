@@ -74,17 +74,18 @@ project "Hazel"
 
 	filter "configurations:Debug"
 		defines "HZ_DEBUG"
-		symbols "On"
+		symbols "on"
 		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "HZ_RELEASE"
-		optimize "On"
+		optimize "on"
 		runtime "Release"
 
 	filter "configurations:Dist"
 		defines "HZ_DIST"
-		symbols "On"
+		symbols "off"
+		optimize "on"
 		runtime "Release"
 
 
