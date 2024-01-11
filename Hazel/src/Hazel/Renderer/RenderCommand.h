@@ -16,7 +16,7 @@ namespace Hazel {
 			s_RenderderAPI->Clear();
 		}
 
-		static void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray)
+		static void DrawIndexed(const Ref<VertexArray>& vertexArray)
 		{
 			s_RenderderAPI->DrawIndexed(vertexArray);
 		}
