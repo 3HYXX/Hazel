@@ -6,9 +6,8 @@
 #include "Hazel/Events/KeyEvent.h"
 #include "Hazel/Events/ApplicationEvent.h"
 
-
 namespace Hazel {
-	class HAZEL_API ImGuiLayer : public Layer
+	class ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();
